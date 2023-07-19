@@ -13,7 +13,9 @@ namespace DeliveryBot.Comand;
 public class SaveClass: CommandHandler
 {
     private readonly ProductJson _json;
-    public SaveClass(DeliveryDbContext context, TelegramBotService telegramBotService, ProductJson json) : base(context, telegramBotService)
+    public SaveClass(DeliveryDbContext context,
+        TelegramBotService telegramBotService, 
+        ProductJson json) : base(context, telegramBotService)
     {
         _json = json;
     }
@@ -95,6 +97,7 @@ public class SaveClass: CommandHandler
         
         var orderItem = new OrderItem()
         {
+            UserId = context.User.Id,
             ProductId = productJson.Id,
             Quantity = context.User.NumberOfOrder,
         };
