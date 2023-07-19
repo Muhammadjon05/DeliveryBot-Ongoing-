@@ -108,4 +108,20 @@ public class SaveClass: CommandHandler
          await TelegramBotService.SendMessage(context.User.ChatId, "Buyurmangiz qabul qilindi sizga ozimiz aloqaga chiqamiz!!!");
          await Context.SaveChangesAsync();
     }
+    [Method("⬅️ Ortga")]
+    public async Task SendMenu(MessageContext context)
+    {
+        if (!string.IsNullOrEmpty(context.Message))
+        {
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+                new List<string>()
+                {
+                    "🍔🍟 FastFood",
+                    "🍨 Muzqaymoqlar",
+                    "⬅️ Ortga"
+                }));
+            context.User.Step = (int)UStep.FastFoodMenu;
+            await Context.SaveChangesAsync();
+        }
+    }
 }

@@ -47,7 +47,6 @@ public class FastFoodChoice : CommandHandler
                 await Context.SaveChangesAsync();
                 await TelegramBotService.SendMessage(chatId: context.User.ChatId,
                     message: Json.Products[0].Description, image: s , new InlineKeyboardMarkup(rows));
-                
             }
         }
     }
@@ -67,4 +66,5 @@ public class FastFoodChoice : CommandHandler
         context.User.Step = (int)UStep.FastFoodMenu;
         await Context.SaveChangesAsync();
     }
+   
 }
