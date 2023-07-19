@@ -7,12 +7,13 @@ namespace Delivery.Data.Context;
 [Scoped]
 public class DeliveryDbContext : DbContext
 {
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+      optionsBuilder.UseNpgsql(
+        "Server=localhost; Port=2005; Database=delivery_db; User Id=postgres; Password=postgres;");
+    }
 
-  public DeliveryDbContext(DbContextOptions<DeliveryDbContext> options): base(options)
-  {
-    
-  }
-  public DbSet<OrderItem> OrderItem { get; set; }
+    public DbSet<OrderItem> OrderItem { get; set; }
   public DbSet<User> Users { get; set; }
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

@@ -6,12 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddTelegramCommands();
-builder.Services.AddDbContext<DeliveryDbContext>(optionsBuilder =>
-{
-    optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("DeliveryDb"));
-});
 
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var app = builder.Build();
+
 
 app.UseHttpsRedirection();
 app.MapControllers();
