@@ -27,8 +27,24 @@ public class InMenuCommand : CommandHandler
                     "⬅️ Ortga"
                 }));
             context.User.Step = (int)UStep.FastFoodMenu;
-          await  Context.SaveChangesAsync();
-        } 
-        
+            await Context.SaveChangesAsync();
+        }
+    }
+
+    [Method]
+    public async Task NotButton(MessageContext context)
+    {
+        if (!string.IsNullOrEmpty(context.Message))
+        {
+            await TelegramBotService.SendMessage(context.User.ChatId,
+                "Notog'ri buyruq kiritildi iltimos menudan birini kiriting", TelegramBotService.GetKeyboard(
+                    new List<string>()
+                    {
+                        "🍽️📝 Menu",
+                        "🛒 Buyurtmalar",
+                        "🔧 Sozlamalar"
+                    }));
+            context.User!.Step = (int)UStep.Menu;
+        }
     }
 }

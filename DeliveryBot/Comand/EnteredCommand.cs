@@ -24,7 +24,7 @@ public class EnteredCommand : CommandHandler
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+            await TelegramBotService.SendMessage(context.User.ChatId, "Assalomu alekum yana bir bor menudan tanlang", TelegramBotService.GetKeyboard(
                 new List<string>()
                 {
                     "🍽️📝 Menu",
@@ -35,4 +35,5 @@ public class EnteredCommand : CommandHandler
         }
         await Context.SaveChangesAsync();
     }
+    
 }
