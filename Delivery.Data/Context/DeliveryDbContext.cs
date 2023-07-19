@@ -7,9 +7,10 @@ namespace Delivery.Data.Context;
 [Scoped]
 public class DeliveryDbContext : DbContext
 {
-  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+  public DeliveryDbContext(DbContextOptions<DeliveryDbContext> options): base(options)
   {
-    optionsBuilder.UseSqlServer(@"Server=sql.bsite.net\MSSQL2016;Database=muhammadjon005_sql;User Id=muhammadjon005_sql;Password=sql;TrustServerCertificate=True");
+    
   }
   public DbSet<OrderItem> OrderItem { get; set; }
   public DbSet<User> Users { get; set; }
