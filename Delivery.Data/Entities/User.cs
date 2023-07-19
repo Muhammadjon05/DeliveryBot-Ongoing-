@@ -16,5 +16,7 @@ public class User
     public string? Phone { get; set; }
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     public bool IsAdmin { get; set; }
-    public List<Order> Orders { get; set; }
+    public int NumberOfOrder { get; set; }
+    public int CurrentProductsId { get; set; }
+    public virtual List<OrderItem> OrderItems { get; set; }
 }

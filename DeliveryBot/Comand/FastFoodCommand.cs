@@ -27,7 +27,7 @@ public class FastFoodCommand : CommandHandler
                     "Donar",
                     "⬅️ Ortga"
                 }));
-            context.User.Step = (int)UStep.FastFoodMenu; 
+            context.User.Step = (int)UStep.FastFoodChoice; 
             await Context.SaveChangesAsync();
         }
     }
@@ -37,7 +37,14 @@ public class FastFoodCommand : CommandHandler
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
-            context.User.Step = (int)UStep.Created;
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+                new List<string>()
+                {
+                    "🍔🍟 FastFood",
+                    "🍨 Muzqaymoqlar",
+                    "⬅️ Ortga"
+                }));
+            context.User.Step = (int)UStep.Menu;
             await Context.SaveChangesAsync();
         }
     }

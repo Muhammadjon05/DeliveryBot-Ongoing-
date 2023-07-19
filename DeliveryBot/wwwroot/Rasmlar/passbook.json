@@ -1,0 +1,44 @@
+[
+    {
+        "Id": 1,
+        "Name":"Lavash",
+        "Price":20000,
+        "Media": {
+            "Exist": true,
+            "Name":"1.png"
+        },
+        "Description":"Tovuq goʼshti, qarsildoq muztogʼ salati, yangi bodring va pomidorlar, fetaksa va bizning maxsus qaylamiz - barchasi yashil lavashga oʼralgan\nNarxi: 20.000"
+    },
+    {
+        "Id": 2,
+        "Name":"Nonburger",
+        "Price":17000,
+        "media": {
+            "Exist": true,
+            "Name":"2.png"
+        },
+        "Description":"Yumshoq kulcha, yumshoq mol goʼshtidan kotlet, tuzlangan bodringlar, yangi pomidorlar, qizil piyoz va ikkita maxsus qayla bilan qarsildoq muztogʼ salati"
+    },
+    {
+        "Id": 3,
+        "Name":"Donar",
+        "Price":41000,
+        "media": {
+            "Exist": true,
+            "Name":"3.png"
+        },
+        "Description":"Yumshoq mol goʼshti, qovurilgan kartoshka, guruch va sabzavot salatidan iborat toʼyimli toʼplam. Bizning pomidordan tayyorlangan maxsus qaylamiz bilan birga tortiladi"
+    },
+    {
+        "Id": 4,
+        "Name":"Hot dog",
+        "Price":13000,
+        "media": {
+            "Exist": true,
+            "Name":"4.png"
+        },
+        "Description":"Kunjutli kulcha, sosiska, tuzlangan bodring, pomidorlar, yangi muztogʼ salati va maxsus qayla"
+
+    }
+
+]
