@@ -31,22 +31,18 @@ public class FastFoodCommand : CommandHandler
             await Context.SaveChangesAsync();
         }
     }
-
     [Method("⬅️ Ortga")]
     public async Task Back(MessageContext context)
     {
-        if (!string.IsNullOrEmpty(context.Message))
-        {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
-                new List<string>()
-                {
-                    "🍔🍟 FastFood",
-                    "🍨 Muzqaymoqlar",
-                    "⬅️ Ortga"
-                }));
-            context.User.Step = (int)UStep.Menu;
-            await Context.SaveChangesAsync();
-        }
+        await TelegramBotService.SendMessage(context.User.ChatId, "Assalomu alekum yana bir bor menudan tanlang", TelegramBotService.GetKeyboard(
+            new List<string>()
+            {
+                "🍽️📝 Menu",
+                "🛒 Buyurtmalar",
+                "🔧 Sozlamalar"
+            }));
+        context.User!.Step = (int)UStep.Menu;
+        await Context.SaveChangesAsync();
     }
 
 }
