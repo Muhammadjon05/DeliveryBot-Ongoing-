@@ -93,8 +93,6 @@ public class SaveClass: CommandHandler
     public async Task SaveToCart(MessageContext context)
     {
         var productJson = _json.Products[context.User.CurrentProductsId - 1];
-    
-        
         var orderItem = new OrderItem()
         {
             UserId = context.User.Id,
@@ -102,7 +100,7 @@ public class SaveClass: CommandHandler
             Quantity = context.User.NumberOfOrder,
         };
          Context.OrderItem.Add(orderItem);
-         context.User.NumberOfOrder = 0;
+         context.User.NumberOfOrder = 1;
          context.User.CurrentProductsId = 0;
          context.User.Step = (int)UStep.Created;
          await TelegramBotService.SendMessage(context.User.ChatId, "Buyurmangiz qabul qilindi sizga ozimiz aloqaga chiqamiz!!!");
