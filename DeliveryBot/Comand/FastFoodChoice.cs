@@ -50,7 +50,98 @@ public class FastFoodChoice : CommandHandler
             }
         }
     }
-
+    [Method("Nonburger")]
+    public async Task Nonburger(MessageContext context)
+    {
+        if (!string.IsNullOrEmpty(context.Message))
+        {
+            if (Json.Products[1].Media.Exist)
+            {
+                var rows = new List<List<InlineKeyboardButton>>();
+                var row = new List<InlineKeyboardButton>()
+                {
+                    InlineKeyboardButton.WithCallbackData("-"),
+                    InlineKeyboardButton.WithCallbackData($"{context.User.NumberOfOrder}"),
+                    InlineKeyboardButton.WithCallbackData("+"),
+                };
+                var extra = new List<InlineKeyboardButton>()
+                {
+                    InlineKeyboardButton.WithCallbackData("📥 Savatga qo'shish")
+                };
+                rows.Add(row);
+                rows.Add(extra);
+                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//2.png");
+                var ms = new MemoryStream(fileBytes);
+                Stream s = ms;
+                context.User.Step = (int)UStep.Save;
+                context.User.CurrentProductsId = Json.Products[1].Id;
+                await Context.SaveChangesAsync();
+                await TelegramBotService.SendMessage(chatId: context.User.ChatId,
+                    message: Json.Products[1].Description, image: s , new InlineKeyboardMarkup(rows));
+            }
+        }
+    }   [Method("Hotdog")]
+    public async Task Hotdog(MessageContext context)
+    {
+        if (!string.IsNullOrEmpty(context.Message))
+        {
+            if (Json.Products[2].Media.Exist)
+            {
+                var rows = new List<List<InlineKeyboardButton>>();
+                var row = new List<InlineKeyboardButton>()
+                {
+                    InlineKeyboardButton.WithCallbackData("-"),
+                    InlineKeyboardButton.WithCallbackData($"{context.User.NumberOfOrder}"),
+                    InlineKeyboardButton.WithCallbackData("+"),
+                };
+                var extra = new List<InlineKeyboardButton>()
+                {
+                    InlineKeyboardButton.WithCallbackData("📥 Savatga qo'shish")
+                };
+                rows.Add(row);
+                rows.Add(extra);
+                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//3.png");
+                var ms = new MemoryStream(fileBytes);
+                Stream s = ms;
+                context.User.Step = (int)UStep.Save;
+                context.User.CurrentProductsId = Json.Products[2].Id;
+                await Context.SaveChangesAsync();
+                await TelegramBotService.SendMessage(chatId: context.User.ChatId,
+                    message: Json.Products[2].Description, image: s , new InlineKeyboardMarkup(rows));
+            }
+        }
+    }
+ [Method("Donar")]
+    public async Task Donar(MessageContext context)
+    {
+        if (!string.IsNullOrEmpty(context.Message))
+        {
+            if (Json.Products[3].Media.Exist)
+            {
+                var rows = new List<List<InlineKeyboardButton>>();
+                var row = new List<InlineKeyboardButton>()
+                {
+                    InlineKeyboardButton.WithCallbackData("-"),
+                    InlineKeyboardButton.WithCallbackData($"{context.User.NumberOfOrder}"),
+                    InlineKeyboardButton.WithCallbackData("+"),
+                };
+                var extra = new List<InlineKeyboardButton>()
+                {
+                    InlineKeyboardButton.WithCallbackData("📥 Savatga qo'shish")
+                };
+                rows.Add(row);
+                rows.Add(extra);
+                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//4.png");
+                var ms = new MemoryStream(fileBytes);
+                Stream s = ms;
+                context.User.Step = (int)UStep.Save;
+                context.User.CurrentProductsId = Json.Products[3].Id;
+                await Context.SaveChangesAsync();
+                await TelegramBotService.SendMessage(chatId: context.User.ChatId,
+                    message: Json.Products[3].Description, image: s , new InlineKeyboardMarkup(rows));
+            }
+        }
+    }
     [Method]
     public async Task NotButton(MessageContext context)
     {
@@ -65,6 +156,22 @@ public class FastFoodChoice : CommandHandler
             }));
         context.User.Step = (int)UStep.FastFoodMenu;
         await Context.SaveChangesAsync();
+    }
+    [Method("⬅️ Ortga")]
+    public async Task SendMenu(MessageContext context)
+    {
+        if (!string.IsNullOrEmpty(context.Message))
+        {
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+                new List<string>()
+                {
+                    "🍔🍟 FastFood",
+                    "🍨 Muzqaymoqlar",
+                    "⬅️ Ortga"
+                }));
+            context.User.Step = (int)UStep.FastFoodMenu;
+            await Context.SaveChangesAsync();
+        }
     }
    
 }
