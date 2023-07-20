@@ -42,25 +42,18 @@ public class InMenuCommand : CommandHandler
     {
         var orders  = await Context.OrderItem.Where
             (i => i.UserId == context.User.Id).ToListAsync();
+        var sameProduct = orders.Where(i=>i.ProductId)
+        string messageReal = "Sizning buyurtmangiz: \n" +
+                             $"Telefon: {context.User.Phone} \n" +
+                             "To'lov usuli: Naqt\n" +
+                             "Izohlar: \n \n" +
 
-        var list = new List<Product?>();
+                             "";
+                             var list = new List<Product?>();
         string message = String.Empty;
         foreach (var order in orders)
         {
-            if (_json.Products.Any(i => i.Id == order.ProductId))
-            {
-                var product = _json.Products.FirstOrDefault(i => i.Id == order.ProductId);
-                message = "Bizning hizmatlarimizdan foydalanganigiz uchun rahmat" +
-                          $"Siznning buyurmalaringiz soni : {orders.Count}" +
-                          $"Buyurtma mahsulot nomi:{product.Name}." +
-                          $"Mahsulot soni:{order.Quantity}." +
-                          $"Mahsulot narxi: {product.Price}" +
-                          $"Umumiy narxi:{product.Price * order.Quantity}";
-            }
-            else
-            {
-                message = "Siz hali mahsulot buyurtma qilmadingiz";
-            }
+            if(order.ProductId)
         }
         await TelegramBotService.SendMessage(context.User.ChatId, message,TelegramBotService.GetKeyboard(new List<string>()
         {
