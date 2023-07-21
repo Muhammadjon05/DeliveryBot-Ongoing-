@@ -42,20 +42,30 @@ public class InMenuCommand : CommandHandler
     {
         var orders  = await Context.OrderItem.Where
             (i => i.UserId == context.User.Id).ToListAsync();
-        var sameProduct = orders.Where(i=>i.ProductId)
-        string messageReal = "Sizning buyurtmangiz: \n" +
-                             $"Telefon: {context.User.Phone} \n" +
-                             "To'lov usuli: Naqt\n" +
-                             "Izohlar: \n \n" +
+       
+        var groupedOrders = orders
+            .GroupBy(order => new { order.UserId, order.ProductId })
+            .Select(group => new
+            {
+                UserId = group.Key.UserId,
+                ProductId = group.Key.ProductId,
+                TotalQuantity = group.Sum(order => order.Quantity)
+            });
 
-                             "";
-                             var list = new List<Product?>();
-        string message = String.Empty;
-        foreach (var order in orders)
+        var messages = new List<string>();
+        foreach (var orderGroup in groupedOrders)
         {
-            if(order.ProductId)
+            var productName = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Name;
+            var habar = $"Sizning buyurtmangiz: \n\n To'lov usuli: Naqt\nMahsulot:{productName}";
+            messages.Add($"UserId: {orderGroup.UserId}, Product: {}, Total Quantity: {orderGroup.TotalQuantity}");
         }
-        await TelegramBotService.SendMessage(context.User.ChatId, message,TelegramBotService.GetKeyboard(new List<string>()
+
+        string empty = String.Empty;
+        foreach (var message in messages)
+        {
+            empty += message;
+        }
+        await TelegramBotService.SendMessage(context.User.ChatId, empty,TelegramBotService.GetKeyboard(new List<string>()
         {
             "⬅️ Ortga"
         }));
