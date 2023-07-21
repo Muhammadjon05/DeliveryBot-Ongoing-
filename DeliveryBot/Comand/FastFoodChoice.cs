@@ -80,8 +80,8 @@ public class FastFoodChoice : CommandHandler
                     message: Json.Products[1].Description, image: s , new InlineKeyboardMarkup(rows));
             }
         }
-    }   [Method("Hotdog")]
-    public async Task Hotdog(MessageContext context)
+    }   [Method("Donar")]
+    public async Task Donar(MessageContext context)
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
@@ -112,7 +112,7 @@ public class FastFoodChoice : CommandHandler
         }
     }
  [Method("Donar")]
-    public async Task Donar(MessageContext context)
+    public async Task HotDog(MessageContext context)
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
