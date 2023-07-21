@@ -58,7 +58,7 @@ public class InMenuCommand : CommandHandler
             var productName = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Name;
             var productPrice = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Price;
             var productQuantity = orderGroup.TotalQuantity; 
-            var habar = $"Sizning buyurtmangiz: \n\n To'lov usuli: Naqt\nMahsulot: {productName}\n{productPrice} x {productQuantity} = {productPrice*productQuantity}";
+            var habar = $"Mahsulot: {productName}\n{productPrice} x {productQuantity} = {productPrice*productQuantity}\n";
             messages.Add(habar);
         }
         string empty = String.Empty;
