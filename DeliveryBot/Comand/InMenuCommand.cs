@@ -56,10 +56,11 @@ public class InMenuCommand : CommandHandler
         foreach (var orderGroup in groupedOrders)
         {
             var productName = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Name;
-            var habar = $"Sizning buyurtmangiz: \n\n To'lov usuli: Naqt\nMahsulot:{productName}";
-            messages.Add($"UserId: {orderGroup.UserId}, Product: {}, Total Quantity: {orderGroup.TotalQuantity}");
+            var productPrice = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Price;
+            var productQuantity = orderGroup.TotalQuantity; 
+            var habar = $"Sizning buyurtmangiz: \n\n To'lov usuli: Naqt\nMahsulot: {productName}\n{productPrice} x {productQuantity} = {productPrice*productQuantity}";
+            messages.Add(habar);
         }
-
         string empty = String.Empty;
         foreach (var message in messages)
         {
