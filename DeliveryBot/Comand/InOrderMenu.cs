@@ -41,7 +41,6 @@ public class InOrderMenu : CommandHandler
        context.User.Step = (int)UStep.Menu;
        await Context.SaveChangesAsync();
     }
-
     [Method]
     public async Task NotButton(MessageContext context)
     {
