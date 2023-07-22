@@ -41,36 +41,42 @@ public class InMenuCommand : CommandHandler
     public async Task SendOrder(MessageContext context)
     {
         var orders  = await Context.OrderItem.Where
-            (i => i.UserId == context.User.Id).ToListAsync();
-       
-        var groupedOrders = orders
-            .GroupBy(order => new { order.UserId, order.ProductId })
-            .Select(group => new
+            (i => i.UserId == context.User!.Id).ToListAsync();
+        if (orders.Count > 0)
+        {
+            var groupedOrders = orders
+                .GroupBy(order => new { order.UserId, order.ProductId })
+                .Select(group => new
+                {
+                    UserId = group.Key.UserId,
+                    ProductId = group.Key.ProductId,
+                    TotalQuantity = group.Sum(order => order.Quantity)
+                });
+            var messages = new List<string>();
+            decimal totalPrice = Decimal.Zero;
+            var msg = "Sizning buyurtmangiz:\n\nTo'lov usuli: Naqt\n";
+            foreach (var orderGroup in groupedOrders)
             {
-                UserId = group.Key.UserId,
-                ProductId = group.Key.ProductId,
-                TotalQuantity = group.Sum(order => order.Quantity)
-            });
-
-        var messages = new List<string>();
-        foreach (var orderGroup in groupedOrders)
-        {
-            var productName = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Name;
-            var productPrice = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId).Price;
-            var productQuantity = orderGroup.TotalQuantity; 
-            var habar = $"Mahsulot: {productName}\n{productPrice} x {productQuantity} = {productPrice*productQuantity}\n";
-            messages.Add(habar);
+                var productName = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId)!.Name;
+                var productPrice = _json.Products.FirstOrDefault(i => i.Id == orderGroup.ProductId)!.Price;
+                var productQuantity = orderGroup.TotalQuantity;
+                totalPrice += productPrice * productQuantity;
+                msg += $"Mahsulot: {productName}\n{productPrice} x {productQuantity} = {productPrice*productQuantity}\n";
+             
+            }
+            var empty = msg + $"Umumiy: {totalPrice}\n";
+            await TelegramBotService.SendMessage(context.User.ChatId, empty,TelegramBotService.GetKeyboard(new List<string>()
+            {
+                "⬅️ Ortga"
+            }));
         }
-        string empty = String.Empty;
-        foreach (var message in messages)
+        else
         {
-            empty += message;
+            await TelegramBotService.SendMessage(context.User.ChatId, "Sizda hech qanday buyurtmalaringiz yoq",TelegramBotService.GetKeyboard(new List<string>()
+            {
+                "⬅️ Ortga"
+            }));
         }
-        await TelegramBotService.SendMessage(context.User.ChatId, empty,TelegramBotService.GetKeyboard(new List<string>()
-        {
-            "⬅️ Ortga"
-        }));
-        
         context.User.Step = (int)UStep.OrdersMenu;
         await Context.SaveChangesAsync();
     }
