@@ -29,7 +29,6 @@ public class EnteredCommand : CommandHandler
                 {
                     "🍽️📝 Menu",
                     "🛒 Buyurtmalar",
-                    "🔧 Sozlamalar"
                 }));
             context.User!.Step = (int)UStep.Menu;
         }

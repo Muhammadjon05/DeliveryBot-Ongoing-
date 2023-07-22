@@ -24,6 +24,10 @@ public class TelegramBotService
     {
         await _bot.SendPhotoAsync(chatId, new InputFileStream(image), caption: message, replyMarkup: reply);
     }
+   public async Task Delete(long chatId, int msgId)
+   {
+       await _bot.DeleteMessageAsync(chatId, messageId: msgId);
+   }
 
     public async Task EditMessageButtons(long chatId, int messageId, InlineKeyboardMarkup reply)
     {

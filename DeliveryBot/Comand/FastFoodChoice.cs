@@ -142,21 +142,6 @@ public class FastFoodChoice : CommandHandler
             }
         }
     }
-    [Method]
-    public async Task NotButton(MessageContext context)
-    {
-        await TelegramBotService.SendMessage(context.User.ChatId, "Berilgan menudan tanlang iltimos",
-            TelegramBotService.GetKeyboard(new List<string>()
-            {
-                "Lavash",
-                "Nonburger",
-                "Hotdog",
-                "Donar",
-                "⬅️ Ortga"
-            }));
-        context.User.Step = (int)UStep.FastFoodMenu;
-        await Context.SaveChangesAsync();
-    }
     [Method("⬅️ Ortga")]
     public async Task SendMenu(MessageContext context)
     {
@@ -173,5 +158,19 @@ public class FastFoodChoice : CommandHandler
             await Context.SaveChangesAsync();
         }
     }
-   
+    [Method]
+    public async Task NotButton(MessageContext context)
+    {
+        await TelegramBotService.SendMessage(context.User.ChatId, "Berilgan menudan tanlang iltimos",
+            TelegramBotService.GetKeyboard(new List<string>()
+            {
+                "Lavash",
+                "Nonburger",
+                "Hotdog",
+                "Donar",
+                "⬅️ Ortga"
+            }));
+        context.User.Step = (int)UStep.FastFoodChoice;
+        await Context.SaveChangesAsync();
+    }
 }
