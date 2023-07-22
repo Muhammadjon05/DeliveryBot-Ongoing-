@@ -147,12 +147,11 @@ public class FastFoodChoice : CommandHandler
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GenerateKeyboard(
                 new List<string>()
                 {
                     "🍔🍟 FastFood",
                     "🍨 Muzqaymoqlar",
-                    "⬅️ Ortga"
                 }));
             context.User.Step = (int)UStep.FastFoodMenu;
             await Context.SaveChangesAsync();
@@ -162,13 +161,12 @@ public class FastFoodChoice : CommandHandler
     public async Task NotButton(MessageContext context)
     {
         await TelegramBotService.SendMessage(context.User.ChatId, "Berilgan menudan tanlang iltimos",
-            TelegramBotService.GetKeyboard(new List<string>()
+            TelegramBotService.GenerateKeyboard(new List<string>()
             {
                 "Lavash",
                 "Nonburger",
                 "Hotdog",
                 "Donar",
-                "⬅️ Ortga"
             }));
         context.User.Step = (int)UStep.FastFoodChoice;
         await Context.SaveChangesAsync();
