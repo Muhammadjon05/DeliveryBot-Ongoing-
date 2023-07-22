@@ -12,7 +12,7 @@ public class TelegramBotService
 
     public TelegramBotService()
     {
-        _bot = new TelegramBotClient("5915655686:AAEgFnEiMhwM5LP-MEl6PzS0V4p6iZjz7Rk");
+        _bot = new TelegramBotClient("6519364754:AAEqNgmQaSgt4HRmXN-3mygfnMOd6tUfKGU");
     }
 
     public async Task SendMessage(long chatId, string message, IReplyMarkup? reply = null)
