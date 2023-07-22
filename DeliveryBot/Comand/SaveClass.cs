@@ -102,8 +102,14 @@ public class SaveClass: CommandHandler
          Context.OrderItem.Add(orderItem);
          context.User.NumberOfOrder = 1;
          context.User.CurrentProductsId = 0;
-         context.User.Step = (int)UStep.Created;
-         await TelegramBotService.SendMessage(context.User.ChatId, "Buyurmangiz qabul qilindi sizga ozimiz aloqaga chiqamiz!!!");
+         context.User.Step = (int)UStep.Menu;
+         await TelegramBotService.Delete(context.User.ChatId, context.MessageId);
+         await TelegramBotService.SendMessage(context.User.ChatId, "Buyurmangiz qabul qilindi sizga ozimiz aloqaga chiqamiz!!!",TelegramBotService.GetKeyboard(
+             new List<string>()
+             {
+                 "🍽️📝 Menu",
+                 "🛒 Buyurtmalar",
+             }));
          await Context.SaveChangesAsync();
     }
     [Method("⬅️ Ortga")]

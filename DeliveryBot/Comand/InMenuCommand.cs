@@ -92,7 +92,6 @@ public class InMenuCommand : CommandHandler
                     {
                         "🍽️📝 Menu",
                         "🛒 Buyurtmalar",
-                        "🔧 Sozlamalar"
                     }));
             context.User!.Step = (int)UStep.Menu;
             await Context.SaveChangesAsync();
