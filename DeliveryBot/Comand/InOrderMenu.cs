@@ -26,6 +26,22 @@ public class InOrderMenu : CommandHandler
         context.User!.Step = (int)UStep.Menu;
         await Context.SaveChangesAsync();
     }
+
+    [Method("❎ Buyurmalarni bekor qilish")]
+    public async Task DeleteProducts(MessageContext context)
+    {
+       var allOrders =  Context.OrderItem.ToList();
+       Context.OrderItem.RemoveRange(allOrders);
+       await TelegramBotService.SendMessage(context.User.ChatId,"Buyurmalaringiz bekor qilindi",TelegramBotService.GetKeyboard(
+           new List<string>()
+           {
+               "🍽️📝 Menu",
+               "🛒 Buyurtmalar",
+           }));
+       context.User.Step = (int)UStep.Menu;
+       await Context.SaveChangesAsync();
+    }
+
     [Method]
     public async Task NotButton(MessageContext context)
     {

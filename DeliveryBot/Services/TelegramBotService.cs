@@ -37,7 +37,35 @@ public class TelegramBotService
     public ReplyKeyboardMarkup GetKeyboard(List<string> buttonsText)
     {
         return new ReplyKeyboardMarkup(buttonsText.Select(text => 
-            new KeyboardButton[] { new(text) })) { ResizeKeyboard = true };
+            new KeyboardButton[] { new(text) }))
+        {
+            ResizeKeyboard = true
+        };
+    }public ReplyKeyboardMarkup GenerateKeyboard(List<string> buttonTexts, string menuText = "Tanlang", bool resizeKeyboard = true)
+    {
+        var keyboardRows = new List<List<KeyboardButton>>();
+
+        int buttonCount = buttonTexts.Count;
+        int buttonsPerRow = 2;
+        for (int i = 0; i < buttonCount; i += buttonsPerRow)
+        {
+            var rowButtons = buttonTexts
+                .Skip(i)
+                .Take(buttonsPerRow)
+                .Select(buttonText => new KeyboardButton(buttonText))
+                .ToList();
+
+            keyboardRows.Add(rowButtons);
+        }
+
+        keyboardRows.Add(new List<KeyboardButton> { new KeyboardButton("⬅️ Ortga") });
+
+        var keyboard = new ReplyKeyboardMarkup(keyboardRows)
+        {
+            ResizeKeyboard = resizeKeyboard
+        };
+
+        return keyboard;
     }
 
     public InlineKeyboardMarkup GetInlineKeyboard(List<string> buttonsText)

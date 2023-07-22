@@ -18,14 +18,13 @@ public class FastFoodCommand : CommandHandler
     {
         if (context.Message == "🍔🍟 FastFood")
         {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GenerateKeyboard(
                 new List<string>()
                 {
                     "Lavash",
                     "Nonburger",
                     "Hotdog",
                     "Donar",
-                    "⬅️ Ortga"
                 }));
             context.User.Step = (int)UStep.FastFoodChoice; 
             await Context.SaveChangesAsync();

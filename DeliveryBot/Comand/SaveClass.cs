@@ -117,12 +117,11 @@ public class SaveClass: CommandHandler
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GenerateKeyboard(
                 new List<string>()
                 {
                     "🍔🍟 FastFood",
                     "🍨 Muzqaymoqlar",
-                    "⬅️ Ortga"
                 }));
             context.User.Step = (int)UStep.FastFoodMenu;
             await Context.SaveChangesAsync();

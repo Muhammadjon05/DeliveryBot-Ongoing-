@@ -25,12 +25,11 @@ public class InMenuCommand : CommandHandler
     {
         if (!string.IsNullOrEmpty(context.Message))
         {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GetKeyboard(
+            await TelegramBotService.SendMessage(context.User.ChatId, "Menuni tanlang", TelegramBotService.GenerateKeyboard(
                 new List<string>()
                 {
                     "🍔🍟 FastFood",
                     "🍨 Muzqaymoqlar",
-                    "⬅️ Ortga"
                 }));
             context.User.Step = (int)UStep.FastFoodMenu;
             await Context.SaveChangesAsync();
@@ -65,16 +64,15 @@ public class InMenuCommand : CommandHandler
              
             }
             var empty = msg + $"Umumiy: {totalPrice}\n";
-            await TelegramBotService.SendMessage(context.User.ChatId, empty,TelegramBotService.GetKeyboard(new List<string>()
+            await TelegramBotService.SendMessage(context.User.ChatId, empty,TelegramBotService.GenerateKeyboard(new List<string>()
             {
-                "⬅️ Ortga"
+                "❎ Buyurmalarni bekor qilish",
             }));
         }
         else
         {
-            await TelegramBotService.SendMessage(context.User.ChatId, "Sizda hech qanday buyurtmalaringiz yoq",TelegramBotService.GetKeyboard(new List<string>()
+            await TelegramBotService.SendMessage(context.User.ChatId, "Sizda hech qanday buyurtmalaringiz yoq",TelegramBotService.GenerateKeyboard(new List<string>()
             {
-                "⬅️ Ortga"
             }));
         }
         context.User.Step = (int)UStep.OrdersMenu;
