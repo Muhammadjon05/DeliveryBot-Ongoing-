@@ -3,7 +3,8 @@
 public enum UStep
 {
     Created,
-    Menu,
+    Menu,Name,
+    PhoneNumber,
     FastFoodMenu,
     FastFoodChoice,
     Save,

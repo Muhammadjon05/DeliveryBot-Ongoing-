@@ -35,6 +35,11 @@ public class BotController : Controller
         {
             case UpdateType.Message:
                 context.MessageId = update.Message!.MessageId;
+                if (update.Message.Type == MessageType.Contact)
+                {
+                    context.PhoneNumber= update.Message.Contact.PhoneNumber;
+                    
+                }
                 context.ChatId = update.Message!.From!.Id;
                 context.Message = update.Message.Text;
                 context.Username = update.Message.From.Username;
@@ -47,6 +52,8 @@ public class BotController : Controller
                 context.Username = update.CallbackQuery.From.Username;
                 context.Name = update.CallbackQuery.From.FirstName + " " + update.CallbackQuery.From.LastName;
                 return true;
+            
+
             default:
                 return false;
         }

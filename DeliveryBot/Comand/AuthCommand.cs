@@ -27,7 +27,7 @@ public class AuthCommand : CommandHandler
             user = new User 
             {
                 ChatId = context.ChatId,
-                Name = context.Username,
+                Username = context.Username,
                 Step = 0,
 
             };

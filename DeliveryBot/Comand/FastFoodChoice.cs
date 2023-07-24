@@ -111,7 +111,7 @@ public class FastFoodChoice : CommandHandler
             }
         }
     }
- [Method("Donar")]
+ [Method("Hotdog")]
     public async Task HotDog(MessageContext context)
     {
         if (!string.IsNullOrEmpty(context.Message))

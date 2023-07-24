@@ -16,9 +16,13 @@ public class EnteredCommand : CommandHandler
     [Method("/start")]
     public async Task SendMessage(MessageContext context)
     {
+        
         await TelegramBotService.SendMessage(context.User.ChatId, "Iltimos ismingizni kiriting? ");
+        context.User.Step = (int)UStep.Name;
+        await Context.SaveChangesAsync();
     }
-
+    
+    
     [Method]
     public async Task SendMenu(MessageContext context)
     {
