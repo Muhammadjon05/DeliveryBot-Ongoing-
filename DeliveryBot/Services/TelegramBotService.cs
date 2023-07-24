@@ -68,6 +68,7 @@ public class TelegramBotService
         return keyboard;
     }
 
+   
     public InlineKeyboardMarkup GetInlineKeyboard(List<string> buttonsText)
     {
         return new InlineKeyboardMarkup(buttonsText.Select(text=> new[]

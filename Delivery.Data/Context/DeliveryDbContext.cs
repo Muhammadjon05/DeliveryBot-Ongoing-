@@ -10,7 +10,7 @@ public class DeliveryDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
       optionsBuilder.UseNpgsql(
-        "Server=localhost; Port=2005; Database=delivery_db; User Id=postgres; Password=postgres;");
+        "Server=localhost; Port=1234; Database=delivery_db; User Id=postgres; Password=postgres;");
     }
 
     public DbSet<OrderItem> OrderItem { get; set; }
