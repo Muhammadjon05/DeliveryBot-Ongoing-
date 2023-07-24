@@ -121,7 +121,6 @@ public class SaveClass: CommandHandler
                 new List<string>()
                 {
                     "🍔🍟 FastFood",
-                    "🍨 Muzqaymoqlar",
                 }));
             context.User.Step = (int)UStep.FastFoodMenu;
             await Context.SaveChangesAsync();
