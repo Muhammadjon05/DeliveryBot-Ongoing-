@@ -39,7 +39,10 @@ public class FastFoodChoice : CommandHandler
                 };
                 rows.Add(row);
                 rows.Add(extra);
-                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//1.png");
+                string relativePath = "//Rasmlar//1.png";
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                var fileBytes = File.ReadAllBytes(fullPath);
+     
                 var ms = new MemoryStream(fileBytes);
                 Stream s = ms;
                 context.User.Step = (int)UStep.Save;
@@ -70,8 +73,12 @@ public class FastFoodChoice : CommandHandler
                 };
                 rows.Add(row);
                 rows.Add(extra);
-                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//2.png");
+                string relativePath = "//Rasmlar//2.png";
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                var fileBytes = File.ReadAllBytes(fullPath);
+
                 var ms = new MemoryStream(fileBytes);
+
                 Stream s = ms;
                 context.User.Step = (int)UStep.Save;
                 context.User.CurrentProductsId = Json.Products[1].Id;
@@ -100,7 +107,10 @@ public class FastFoodChoice : CommandHandler
                 };
                 rows.Add(row);
                 rows.Add(extra);
-                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//3.png");
+                string relativePath = "//Rasmlar//3.png";
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                var fileBytes = File.ReadAllBytes(fullPath);
+
                 var ms = new MemoryStream(fileBytes);
                 Stream s = ms;
                 context.User.Step = (int)UStep.Save;
@@ -131,7 +141,10 @@ public class FastFoodChoice : CommandHandler
                 };
                 rows.Add(row);
                 rows.Add(extra);
-                var fileBytes = File.ReadAllBytes("C://Users//Muhammadjon//MarketPlace//DeliveryBot//DeliveryBot//wwwroot//Rasmlar//4.png");
+                string relativePath = "//Rasmlar//4.png";
+                string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, relativePath);
+                var fileBytes = File.ReadAllBytes(fullPath);
+
                 var ms = new MemoryStream(fileBytes);
                 Stream s = ms;
                 context.User.Step = (int)UStep.Save;
@@ -151,7 +164,6 @@ public class FastFoodChoice : CommandHandler
                 new List<string>()
                 {
                     "🍔🍟 FastFood",
-                    "🍨 Muzqaymoqlar",
                 }));
             context.User.Step = (int)UStep.FastFoodMenu;
             await Context.SaveChangesAsync();
